@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from .keyword_extract import get_most_common_words
 
 app = FastAPI()
 app.add_middleware(
@@ -33,5 +34,7 @@ async def root(raw_text: str):
 
     emotions = ['anger', 'disgust', 'fear', 'joy', 'neutral', 'sadness', 'shame', 'surprise']
     probability_dict = {emotion: prob for emotion, prob in zip(emotions, probability[0])}
+    
+    most_common_words = get_most_common_words(raw_text)
 
     return JSONResponse(content={})
