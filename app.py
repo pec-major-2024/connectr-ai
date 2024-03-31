@@ -37,4 +37,4 @@ async def root(raw_text: str):
     
     most_common_words = get_most_common_words(raw_text)
 
-    return JSONResponse(content={})
+    return JSONResponse(content={"probability_dict": probability_dict, "most_common_words": most_common_words})
