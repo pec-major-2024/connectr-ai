@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from .keyword_extract import get_most_common_words
+from keyword_extract import get_most_common_words
 
 app = FastAPI()
 app.add_middleware(
@@ -14,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-pipe_lr = joblib.load(open("emotion_classifier_pipe_lr.pkl", "rb"))
+pipe_lr = joblib.load(open("models/emotion_classifier_pipe_lr.pkl", "rb"))
 
 def predict_emotions(docx):
     results = pipe_lr.predict([docx])
